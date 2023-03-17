@@ -47,6 +47,10 @@ jobs:
       run: msbuild $env:Solution_Name /t:Clean,Rebuild /p:Configuration=$env:Configuration /verbosity:diag
       env:
         Configuration: ${{ matrix.configuration }}
+        
+    - name: Log built binaries
+      run: |
+        dir src/bin/Release/*.*
 
     - name: Upload MSI
       uses: actions/upload-artifact@v3
