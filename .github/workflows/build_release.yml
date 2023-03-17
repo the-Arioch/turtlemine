@@ -28,7 +28,6 @@ jobs:
 
     - name: Retrieve SNK
       uses: timheuer/base64-to-file@v1.2
-      secrets: inherit
       with:
         fileName: 'turtlemine.snk'
         fileDir: './src'
