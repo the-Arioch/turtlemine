@@ -39,13 +39,13 @@ jobs:
         encodedString: ${{ secrets.TURTLEMINE_SNK }}
 
     - name: Setup NuGet.exe for use with actions
-      uses: NuGet/setup-nuget@v1.0.5
+      uses: NuGet/setup-nuget@v1.1.1
       
     - name: restore packages
       run: nuget restore $env:Solution_Name
 
     - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v1.3
      
     - name: Build
       run: msbuild $env:Solution_Name /t:Clean,Rebuild /p:Configuration=$env:Configuration /verbosity:diag
@@ -53,19 +53,19 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
     - name: Upload MSI
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Binaries
         path: src/bin/Release/TurtleMine_*bit.msi
         
     - name: Upload dll
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: MSI Packages
         path: src/bin/Release/TurtleMine*.dll
 
     - name: Upload dll
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: executeable
         path: src/bin/Release/TurtleMine*.exe
