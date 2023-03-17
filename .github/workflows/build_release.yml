@@ -24,7 +24,7 @@ jobs:
           tagRegex: "(?<package>.*)_(?<version>.*)" 
       
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Retrieve SNK
       uses: timheuer/base64-to-file@v1.2
