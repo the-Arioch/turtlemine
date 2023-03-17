@@ -2,6 +2,17 @@ name: Build release
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag for Releases page (ncipollo/release-action)'
+        required: true
+        type: string
+        default: ${{ github.ref_name }}
+      commit:
+        required: false
+        type: string
+        default: ${{ github.ref }}
+        description: 'Commit description for Releases page (ncipollo/release-action)'
   push:
     tags: 
       - 'Release_[1-9]+.[0-9]+.[0-9]+.[0-9]+'
