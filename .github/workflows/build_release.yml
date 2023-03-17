@@ -1,7 +1,7 @@
 name: Build release
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
   push:
     tags: 
       - 'Release_[1-9]+.[0-9]+.[0-9]+.[0-9]+'
