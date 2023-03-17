@@ -21,6 +21,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Release]
+        Platform: [x64,x86]
 
     runs-on: windows-latest
 
@@ -55,13 +56,14 @@ jobs:
       uses: microsoft/setup-msbuild@v1.3
      
     - name: Build
-      run: msbuild $env:Solution_Name /t:Clean,Rebuild /p:Configuration=$env:Configuration /verbosity:diag
+      run: msbuild $env:Solution_Name /t:Clean,Rebuild /p:Configuration=$env:Configuration;Platform=$env:Platform /verbosity:diag
       env:
         Configuration: ${{ matrix.configuration }}
+        Platform: ${{ matrix.Platform }}
         
     - name: Log built binaries
       run: |
-        dir src/bin/Release/*.*
+        dir /s src/bin/Release/*.*
 
     - name: Upload MSI
       uses: actions/upload-artifact@v3
