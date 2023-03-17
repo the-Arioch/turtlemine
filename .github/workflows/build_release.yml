@@ -2,6 +2,17 @@ name: Build release
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag for Releases page (ncipollo/release-action)'
+        required: true
+        type: string
+        default: "master"
+      commit:
+        required: false
+        type: string
+        default: "GitHub Action debugging, manually triggered"
+        description: 'Commit description for Releases page (ncipollo/release-action)'
   push:
     tags: 
       - 'Release_[1-9]+.[0-9]+.[0-9]+.[0-9]+'
@@ -10,6 +21,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Release]
+        Platform: [x64,x86]
 
     runs-on: windows-latest
 
@@ -44,9 +56,14 @@ jobs:
       uses: microsoft/setup-msbuild@v1.3
      
     - name: Build
-      run: msbuild $env:Solution_Name /t:Clean,Rebuild /p:Configuration=$env:Configuration /verbosity:diag
+      run: msbuild $env:Solution_Name /t:Clean,Rebuild /p:Configuration=$env:Configuration;Platform=$env:Platform /verbosity:diag
       env:
         Configuration: ${{ matrix.configuration }}
+        Platform: ${{ matrix.Platform }}
+        
+    - name: Log built binaries
+      run: |
+        dir /s src/bin/Release/*.*
 
     - name: Upload MSI
       uses: actions/upload-artifact@v3
