@@ -29,7 +29,6 @@ jobs:
     - name: Dump default SNK for secret-less users
       run: |
         cp "src/turtlemine.public.snk" "src/turtlemine.snk"
-        cp "${RUNNER_TEMP}/src/turtlemine.public.snk" "${RUNNER_TEMP}/src/turtlemine.snk"
 
     - name: Retrieve SNK
       continue-on-error: true
