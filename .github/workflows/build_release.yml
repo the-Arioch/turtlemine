@@ -26,10 +26,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       
-    - name: Dump default SNK for secret-less users
-      run: |
-        cp "src/turtlemine.public.snk" "src/turtlemine.snk"
-
     - name: Retrieve SNK
       continue-on-error: true
       uses: timheuer/base64-to-file@v1.2
