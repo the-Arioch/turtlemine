@@ -19,7 +19,7 @@ jobs:
     steps:
     - name: Get tag name
       id: tagname
-      uses: olegtarasov/get-tag@v2.1.1
+      uses: olegtarasov/get-tag@v2.1.2
       with:
           tagRegex: "(?<package>.*)_(?<version>.*)" 
       
