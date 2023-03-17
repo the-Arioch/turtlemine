@@ -1,6 +1,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <OutputPath>..\bin\$(Configuration)\</OutputPath>
+        <OutputPath>..\bin\$(Configuration)\$(Platform)</OutputPath>
         <SignAssembly>false</SignAssembly>
         <AssemblyOriginatorKeyFile>$(SolutionDir)\turtlemine.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
