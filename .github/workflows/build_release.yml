@@ -7,11 +7,11 @@ on:
         description: 'Tag for Releases page (ncipollo/release-action)'
         required: true
         type: string
-        default: ${{ github.ref_name }}
+        default: "master"
       commit:
         required: false
         type: string
-        default: ${{ github.ref }}
+        default: "GitHub Action debugging, manually triggered"
         description: 'Commit description for Releases page (ncipollo/release-action)'
   push:
     tags: 
